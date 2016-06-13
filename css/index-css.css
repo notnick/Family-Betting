@@ -183,7 +183,6 @@ td{
   width:5%;
 }
 .cust-table{
-    border: 1px solid #ccc;
     transition: 0.5s;
     font-size:16px;
     }
@@ -196,6 +195,14 @@ td{
       font-size:18px;
       color:white;
       background-color: #009688;
+    }
+    .cust-table td{
+    }
+    .cust-table tr{
+      border:1px solid #ddd;
+    }
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+      border-top: 0px;
     }
 
 .results-table th:not(:first-child) {
@@ -230,8 +237,12 @@ td{
 }
 
 
+
 @media (min-width: 1025px){
-  td{
+  .table-games td{
+    height: 35px;
+  }
+  .results-table td{
     height: 36px;
     }
 }

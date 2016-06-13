@@ -7,6 +7,23 @@ headers: { 'X-Auth-Token': 'YOUR_TOKEN' },
 2d9073763e924684a4162cea8d3817f4
 
 
+if(endString.toString().trim() === zalog[i].nikolay.toString().trim().replace(/ /g, '')){
+  console.log("MACH! " +  endString.toString().trim() === zalog[i].nikolay.toString().trim().replace(/ /g, ''));
+}else{
+  console.log("Not a Match");
+}
+
+if(endString.localeCompare(zalog[y].nikolay.toString().trim())){
+  console.log("NICK" + endString.toString().trim() +" RESULTS "+ zalog[y].nikolay.toString().trim());
+}
+else if(endString.toString().trim() == zalog[y].ivan.toString().trim()){
+  console.log("Ivan" + endString.trim() +" RESULTS "+ zalog[y].ivan.toString().trim());
+}else if(endString.toString().trim() == zalog[y].silviq.toString().trim()){
+  console.log("Silviq" + endString.toString().trim() +"RESULTS"+ zalog[y].silviq.toString().trim());
+}else{
+  console.log(" ---Empty---");
+}
+
 ng-if="value.status === 'FINISHED' "
 
 
