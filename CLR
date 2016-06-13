@@ -1,0 +1,136 @@
+background-color: #fa2323;
+color: #eee   / gray
+color :fff  / white
+
+
+headers: { 'X-Auth-Token': 'YOUR_TOKEN' },
+2d9073763e924684a4162cea8d3817f4
+
+
+ng-if="value.status === 'FINISHED' "
+
+
+#pp-1{
+  background-color:#7CB342;
+}
+#pp-2{
+  background-color:#FB8C00;
+}
+#pp-3{
+  background-color:#4FC3F7;
+}
+
+this.getFlag = function(name){
+  function getFlag(name){
+    for(var i = 0; i <gl_teams.length;i++){
+           if(gl_teams[i].name.toString() === name){
+             console.log("MATH");
+             console.log(gl_teams[i].crestUrl);
+             return gl_teams[i].crestUrl;
+           }else{
+             console.log("NOTHIGN");
+           }
+    }
+
+ }
+};
+
+var temp = "France";
+ function getFlag(name){
+   for(var i = 0; i <gl_teams.length;i++){
+          if(gl_teams[i].name.toString() === name){
+            console.log("MATH");
+            console.log(gl_teams[i].crestUrl);
+            return gl_teams[i].crestUrl;
+          }else{
+            console.log("NOTHIGN");
+          }
+   }
+
+}
+getFlag(temp);
+
+    var temp = "France";
+
+     function p (name){
+       for(var i = 0; i <gl_teams.length;i++){
+              if(gl_teams[i].name.toString() === name){
+                console.log("MATH");
+                return gl_teams[i].crestUrl;
+              }else{
+                console.log("NOTHIGN");
+              }
+       }
+
+    }
+
+    p(temp);
+
+                angular.forEach(arr, function(value, key) {
+                  console.log( + value.homeTeamName + "vs" + value.awayTeamName + " " + value.date + " " + value.result.goalsAwayTeam + " " + value.result.goalsHomeTeam);
+                });
+
+
+                $(document).on("mouseenter", "table tr", function() {
+                  var index = $(this).index();
+                  console.log("hover");
+                  $('table tr').each(function()
+                  {
+                      $(this).find('tr').addClass('highlight');
+                  });
+                 });
+
+                 $(document).on("mouseleave", "table tr", function() {
+                   var index = $(this).index();
+                   $('table tr').each(function()
+                   {
+                       $(this).find('tr').removeClass('highlight');
+                   });
+                 });
+
+                 $(".table1 tr").addClass("highlight");
+                 $(".table2 tr").addClass("highlight");
+
+
+                 $(document).on("mouseenter", ".table1 tr", function() {
+                   console.log("hover");
+
+                   $(this).css("background-color","red");
+                   $(".table2 tr").css("background-color","red");
+
+                  });
+
+                  $(document).on("mouseleave", ".table1 tr ", function() {
+                    $(this).css("background-color","");
+                    $(".table2 tr").css("background-color","");
+                  });
+
+                  $(document).on("mouseenter", ".table2 tr ", function() {
+
+                   });
+
+                   $(document).on("mouseleave", "trone ", function() {
+
+                   });
+
+
+                      $(document).on("mouseenter", "table.grid tr:not(:first-child)", function() {
+                        console.log("hover");
+                        $(this).css("background-color","red");
+                       });
+
+                       $(document).on("mouseleave", "table.grid tr:not(:first-child) ", function() {
+                         $(this).css("background-color","");
+                       });
+
+
+                       for(var i = 0;i<gl_games.fixtures.length; i++){
+                         console.log("test" + i);
+                         for(var y = 0; y<gl_teams.teams.length; y++){
+                           if(gl_games.fixtures[i].homeTeamName.toString() === gl_teams[y].name.toString()){
+                                   return gl_team[y].crestUrl;
+                               }else{
+                                 console("Nothing found");
+                               }
+                           }
+                         }

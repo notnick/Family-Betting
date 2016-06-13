@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="bg" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+    <meta name="description" content="Детски парти център Комикс Ямбол">
+    <meta name="keywords" content="детско парти,парти,рожден ден,център,ямбол,комикс,целодневно,гледане,деца">
+    <meta name="robots" content="INDEX,FOLLOW">
+-->
+    <meta property="og:url"                content="" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="Euro 2016" />
+    <meta property="og:description"        content="Euro Family Bets" />
+    <meta property="og:image"              content="http://www.radiokerry.ie/wp-content/uploads/2014/01/Euro-2016.png" />
+
+
+
+    <!-- Dont show search box in google -->
+    <meta name="google" content="nositelinkssearchbox" />
+
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="ico/20.ico">
+    <link rel="stylesheet"  href="css/index-css.css">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="script/app.js" type="text/javascript"></script>
+
+    <title>Евро 2016</title>
+  </head>
+  <body  ng-controller="betController">
+    <noscript>
+      &lt;style type="text/css"&gt;
+        #noscript {display: block;}
+      &lt;/style&gt;
+      &lt;div id="noscript"&gt;Вашият браузър не поддържа Java Script или сте го изключили. Поради тази причина, този сайт може да бъде възпроизведен само отчасти. Моля активирайте Javascript във вашия браузър.&lt;/div&gt;
+    </noscript>
+
+    <div class="container">
+          <div class="col-md-12">
+            <div class="profile-container">
+                <div class="profile">
+                    <div class="profile-pic" id="pp-1">
+                      <img src="img/p2.png" alt="Pic" class="img img-responsive img-circle" />
+                    </div>
+                    <div class="profile-name">
+                      <span>Николай</span>
+                    </div>
+                    <div class="profile-hr"></div>
+                    <div class="profile-points">
+                      <span>1т.</span>
+                    </div>
+                </div>
+                <div class="profile">
+                  <div class="profile-pic" id="pp-2">
+                    <img src="img/p1.png" alt="Pic" class="img img-responsive img-circle" />
+                  </div>
+                  <div class="profile-name">
+                    <span>Иван</span>
+                  </div>
+                  <div class="profile-hr"></div>
+                  <div class="profile-points">
+                    <span>0т.</span>
+                  </div>
+                </div>
+                <div class="profile">
+                  <div class="profile-pic" id="pp-3">
+                    <img src="img/p3.png" alt="Pic" class="img img-responsive img-circle" />
+                  </div>
+                  <div class="profile-name">
+                      <span>Силвия</span>
+                  </div>
+                  <div class="profile-hr"></div>
+                  <div class="profile-points">
+                    <span>0т.</span>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-12" id="cnt-target">
+            <div class="main-wrapper container">
+            <div class="col-md-8">
+              <table class="table table-bordered cust-table table-striped table-condensed grid table-games"  >
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Дата</th>
+                      <th>Час</th>
+                      <th>Мач</th>
+                      <th>Резултат</th>
+                  </tr>
+              </thead>
+                <tr  ng-cloak ng-repeat="(key,value) in results" >
+                    <td>{{$index+1}}</td>
+                    <td>{{value.date | date:'dd-MM'}}</td>
+                    <td>{{value.date | date:'HH:mm'}}ч<span ng-if="value.status == 'IN_PLAY'"class="isLive3"></span></td>
+                    <td>
+                      <div class="td-exp">
+                        <div class="td-exp-inner">{{value.homeTeamName}}</div>
+                        <div class="td-exp-inner-2"><span class="team-flag"ng-init = "homeT = getFlag(value.homeTeamName)">
+                          <img ng-src="{{homeT}}" /></span></div> <div class="td-exp-inner-3">-</div>
+                          <div class="td-exp-inner-2"><span class="team-flag"ng-init = "awayT = getFlag(value.awayTeamName)">
+                            <img ng-src="{{awayT}}" /></span></div>
+                            <div class="td-exp-inner">{{value.awayTeamName}}</div>
+                          </div>
+                        </td>
+                    <td>{{value.result.goalsHomeTeam}} <span ng-if="value.result.goalsHomeTeam != null">:</span> {{value.result.goalsAwayTeam}}</td>
+                </tr>
+
+            </table>
+          </div>
+              <div class="col-md-4">
+                <table  class="table table-bordered cust-table table-striped table-condensed results-table grid"   >
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Николай</th>
+                          <th>Иван</th>
+                          <th>Силвия</th>
+                      </tr>
+                  </thead>
+                    <tr  ng-cloak ng-repeat="(key,value) in zalog"  >
+                        <td>{{$index+1}}</td>
+                        <td>{{value.nikolay}}</td>
+                        <td>{{value.ivan}}</td>
+                        <td>{{value.silviq}}</td>
+                    </tr>
+                </table>
+              </div>
+
+            </div> <!-- Mw-->
+            </div>
+
+          </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="footer-wrapper">
+            <div class="footer-txt">
+                <a href="http://icodefish.com/"><span>Made by iCodeFish</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="script/javascript.js" type="text/javascript"></script>
+
+  </body>
+</html>
