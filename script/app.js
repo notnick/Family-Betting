@@ -34,11 +34,7 @@ var check = this;
               function getFlag(name){
                   for(var i = 0; i <gl_teams.length;i++){
                          if(gl_teams[i].name.toString() === name){
-                           console.log("MATH");
-                           console.log(gl_teams[i].crestUrl);
                            return gl_teams[i].crestUrl;
-                         }else{
-                           console.log("NOTHIGN");
                          }
                   }
 
@@ -59,6 +55,9 @@ var check = this;
                   {nikolay: '-', ivan: '-', silviq: '-'},
                   {nikolay: '-', ivan: '-', silviq: '-'},
                   {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
+                  {nikolay: '-', ivan: '-', silviq: '-'},
+                  {nikolay: '-', ivan: '-', silviq: '-'},
+                  {nikolay: '1 : 1', ivan: '2 : 2', silviq: '? : ?'},
               ];
 
 

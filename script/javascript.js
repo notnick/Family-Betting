@@ -25,12 +25,18 @@ $( document ).ready(function() {
   $(".results-table tr:nth-child(6) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
   $(".results-table tr:nth-child(6) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
 
+  $(".results-table tr:nth-child(7) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(7) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(7) td:nth-child(4)").css("background","rgba(102, 237, 90, 0.5)");
 
    var today = new Date();
    var dd = today.getDate();
    var mm = today.getMonth()+1;
 
    console.log(dd +" "+ mm);
+
+   $('[data-toggle="tooltip"]').tooltip();
+
 
 // Two Dynamic tables - same row highlight
 

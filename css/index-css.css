@@ -221,6 +221,14 @@ td{
   width: 100%;
 }
 
+.kr{
+  position: absolute;
+  width: 12px;
+  background-color: #0d3563;
+  color:white;
+  font-size: 8px;
+}
+
 
 @media (min-width: 1025px){
   td{
