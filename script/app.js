@@ -15,7 +15,7 @@ var zalog = [   {nikolay: '2 : 0', ivan: '0 : 1', silviq: '?'},
                 {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
                 {nikolay: '-', ivan: '-', silviq: '-'},
                 {nikolay: '-', ivan: '-', silviq: '-'},
-                {nikolay: '1 : 1', ivan: '2 : 2', silviq: '? : ?'},
+                {nikolay: '1 : 1', ivan: '2 : 2', silviq: '0 : 1'},
             ];
 
   $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
@@ -28,30 +28,35 @@ var zalog = [   {nikolay: '2 : 0', ivan: '0 : 1', silviq: '?'},
           $scope.results = arr;
           console.log(arr);
 
-          var arrayOne = [1,2,3,5];
-          var arrayTwo = [4,7,5,5];
+
+
 
           for(var i =0; i<gl_games.length;i++){
             if(gl_games[i].status.toString() === "FINISHED"){
-              for(var y =0; y<zalog.length;y++){
 
-                var home = gl_games[i].result.goalsHomeTeam.toString();
-                var away=  gl_games[i].result.goalsAwayTeam.toString();
+              var home = gl_games[i].result.goalsHomeTeam.toString();
+              var away=  gl_games[i].result.goalsAwayTeam.toString();
+              var temp = home+":"+away;
+              var endString = temp.replace(/ /g, '');
 
-                var temp = home+":"+away;
-                var endString = temp.replace(/ /g, '');
-                console.log(endString);
+              console.log(i+1 + " "+ endString);
 
+              for(var j = 0; j< zalog.length; j++){
+                  // If we compare to table values wont need to check each object
+                  // ---  ?  if td.value.toString.replace() == endString td[i].addClass('highihg');
 
+                  if(endString === zalog[i].nikolay.toString().trim().replace(/ /g, '')){
+                    console.log("nikolay " + endString);
+                  }else if(endString === zalog[i].ivan.toString().trim().replace(/ /g, '')){
+                    console.log("ivan " + endString);
+                  }else if(endString === zalog[i].silviq.toString().trim().replace(/ /g, '')){
+                    console.log("silviq " + endString);
+                  }else{
 
-                if(endString === zalog[y].nikolay.toString().trim().replace(/ /g, '')){
-                  console.log("Match!");
-                }else{
-                }
-
+                  }
               }
+
             }else{
-              console.log("Ne zavarshili " + i);
             }
 
           }
