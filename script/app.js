@@ -19,6 +19,8 @@ var zalog = [
                 {nikolay: '1 : 1', ivan: '2 : 2', silviq: '0 : 1'},
                 {nikolay: '0 : 0', ivan: '2 : 0', silviq: '1 : 1'},
                 {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '1 : 0', silviq: '? : ?'},
             ];
 
   $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
@@ -31,14 +33,54 @@ var zalog = [
           $scope.results = arr;
           console.log(arr);
 
-          var p = new Date();
-          console.log("Original date "+p);
-          p = (p.getMonth() + 1) + "-" + p.getDate() + "-" + p.getFullYear();
-          console.log("P: " + p);
+          var gamesPlayed = 0;
+          var totalGoals = 0;
+          var avgGoals = 0;
 
-        var counter = 0;
+          var betsTotal = 0;
+          var betsTotalT = 0;
+          var betSuccessful = 2;
+          var betsPercent = 0;
+
+          for(var m = 0; m < gl_games.length; m++){
+            if(gl_games[m].status.toString() === 'FINISHED'){
+              gamesPlayed++;
+            }
+          }
+
+          for(var g =0;g<gl_games.length; g++){
+            if(gl_games[g].status.toString() === 'FINISHED'){
+              var home,away;
+              totalGoals += gl_games[g].result.goalsHomeTeam + gl_games[g].result.goalsAwayTeam;
+            }
+            var tmp = totalGoals / gamesPlayed;
+            avgGoals = tmp.toString().slice(0,4);
+          }
+
+          for(var b = 0; b<zalog.length; b++){
+              if(zalog[b].nikolay.toString() != '-'){
+                  betsTotal += 1;
+              }
+             betsTotalT = betsTotal * 3;
+             var tmp2 = (betSuccessful/betsTotalT) *100;
+             betsPercent = tmp2.toString().slice(0,4);
+          }
+
+          console.log("PL: " + gamesPlayed);
+          console.log("GL: " + totalGoals);
+          console.log("AL: " + avgGoals);
+          console.log("BL: " + betsTotalT);
+          console.log("BL: " + betsPercent);
+
+          $scope.gamesPlayed = gamesPlayed;
+          $scope.totalGoals = totalGoals;
+          $scope.avgGoals = avgGoals;
+          $scope.betsTotalT = betsTotalT;
+          $scope.betsPercent = betsPercent;
+          $scope.betSuccessful = betSuccessful;
+
+
         var datesArray = [];
-
         for( var x = 0; x<gl_games.length; x++){
             datesArray.push(gl_games[x].date.slice(5,10));
         }
@@ -143,8 +185,6 @@ var zalog = [
 
 
           });
-
-
 
 
 

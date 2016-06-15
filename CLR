@@ -2,6 +2,29 @@ background-color: #fa2323;
 color: #eee   / gray
 color :fff  / white
 
+<div class="col-md-12">
+    <div class="col-md-8 col-md-offset-2 stats-box">
+        <div class="col-md-4 stats-type">
+          <h3>Изиграни мачове</h3>
+          <div class="stat-lrg">{{gamesPlayed}}</div>
+          <div class="">от общо</div>
+          <div class="stat-lrg">51</div>
+        </div>
+        <div class="col-md-4 stats-type">
+          <h3>Голове</h3>
+          <div class=""><span class="stat-lrg">{{totalGoals}}</span></div>
+          <div class="">средно</div>
+          <div class=""><span class="stat-lrg">{{avgGoals}}</span></div>
+        </div>
+        <div class="col-md-4 stats-type">
+          <h3>Залози</h3>
+          <div class=""><span class="stat-lrg">{{betsTotalT}}</span></div>
+          <div class="">успешни</div>
+          <div class=""><span class="stat-lrg">{{betSuccessful}}</span><span class="stat-sm">({{betsPercent}}%)</span></div>
+        </div>
+    </div>
+</div>
+
 
 headers: { 'X-Auth-Token': 'YOUR_TOKEN' },
 2d9073763e924684a4162cea8d3817f4

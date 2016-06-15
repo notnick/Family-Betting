@@ -44,6 +44,14 @@ $( document ).ready(function() {
   $(".results-table tr:nth-child(10) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(10) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
+  $(".results-table tr:nth-child(11) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(11) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(11) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(12) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(12) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(12) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
 
 
    var today = new Date();
