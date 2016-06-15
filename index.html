@@ -4,11 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--
-    <meta name="description" content="Детски парти център Комикс Ямбол">
-    <meta name="keywords" content="детско парти,парти,рожден ден,център,ямбол,комикс,целодневно,гледане,деца">
-    <meta name="robots" content="INDEX,FOLLOW">
--->
+
     <meta property="og:url"                content="" />
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="Euro 2016" />
@@ -25,6 +21,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="ico/20.ico">
     <link rel="stylesheet"  href="css/index-css.css">
+
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="script/app.js" type="text/javascript"></script>
@@ -81,9 +78,30 @@
             </div>
           </div>
 
-
           <div class="col-md-12" id="cnt-target">
             <div class="main-wrapper container">
+
+              <div class="col-md-12">
+                  <div class="col-md-8 col-md-offset-2 stats-box">
+                      <div class="col-md-4 stats-type">
+                        <h3>Изиграни мачове</h3>
+                        <div class="stat-lrg">{{gamesPlayed}}</div>
+                        <div class="">от общо</div>
+                        <div class="stat-lrg">51</div>
+                      </div>
+                      <div class="col-md-4 stats-type">
+                        <h3>Голове</h3>
+                        <div class="">Досега: <span class="stat-lrg">{{totalGoals}}</span></div>
+                        <div class="">Средно на мач: <span class="stat-lrg">{{avgGoals}}</span></div>
+                      </div>
+                      <div class="col-md-4 stats-type">
+                        <h3>Залози</h3>
+                        <div class="stat-fix">Общо: <span class="stat-lrg">{{betsTotalT}}</span></div>
+                        <div class="stat-fix">Успешни: <span class="stat-lrg">{{betSuccessful}}</span><span class="stat-sm">({{betsPercent}}%)</span></div>
+                      </div>
+                  </div>
+              </div>
+
             <div class="col-md-8">
               <table class="table  cust-table  table-striped table-condensed grid table-games"  >
               <thead>
@@ -96,6 +114,7 @@
                   </tr>
               </thead>
                 <tr  ng-cloak ng-repeat="(key,value) in results" >
+
                     <td>{{$index+1}}</td>
                     <td>{{value.date | date:'dd-MM'}}</td>
                     <td>{{value.date | date:'HH:mm'}}ч<span ng-if="value.status == 'IN_PLAY'"class="isLive3"></span></td>
