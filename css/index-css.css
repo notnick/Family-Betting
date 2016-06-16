@@ -249,22 +249,23 @@ td{
   font-size: 8px;
   margin-left: 2px;
 }
-.stats-box{
-}
+
 .stats-type{
   text-align: center;
 }
 .stats-type h3{
   margin-top: 5px;
   margin-bottom: 5px;
+  font-size:1.6em;
 }
 .stat-lrg{
-  font-size:1.5em;
+  font-size:1.6em;
   color:#1a599c;
 }
 .stat-sm{
   font-size:1.1em;
 }
+
 
 
 
@@ -277,7 +278,11 @@ td{
     }
 }
 
+/*
+TARGET ONYL IPAD>Width
+ */
 @media(max-width: 1024px){
+
   .profile-container{
     background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -285,6 +290,8 @@ td{
 }
 
 @media(max-width: 768px){
+
+
   .profile{
     margin:0px;
     margin-left: 5px;
@@ -292,6 +299,7 @@ td{
   }
   .profile-container{
     margin-bottom: 5px;
+    height: auto;
   }
   .container {
     padding-right: 1px;
@@ -318,14 +326,24 @@ td{
   display:inline-block;
   width:auto;
 }
-.td-exp-inner-3{
-  display:inline-block;
-  width:auto;
-}
+  .td-exp-inner-3{
+    display:inline-block;
+    width:auto;
+  }
 
-.profile-container{
+  .profile-container{
+    background-size: 100% 100%;
+        background-repeat: no-repeat;
+  }
 
-  background-size: 100% 100%;
-      background-repeat: no-repeat;
+  .stats-type h3{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 1.1em;
+  }
+  .stat-lrg{
+    font-size:1em;
+    color:#1a599c;
+  }
 
 }

@@ -20,7 +20,7 @@ var zalog = [
                 {nikolay: '0 : 0', ivan: '2 : 0', silviq: '1 : 1'},
                 {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
                 {nikolay: '-',     ivan: '-',     silviq: '-'},
-                {nikolay: '1 : 1', ivan: '1 : 0', silviq: '? : ?'},
+                {nikolay: '1 : 1', ivan: '1 : 0', silviq: '2 : 0'},
             ];
 
   $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
