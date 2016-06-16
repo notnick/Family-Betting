@@ -1,7 +1,7 @@
 
 var app = angular.module('myApp', []);
 
-app.controller('betController',['$http','$sce', '$scope','$log',function($http, $sce, $scope, $log){
+app.controller('betController',['$http','$sce', '$scope','$log','$filter',function($http, $sce, $scope, $log,$filter){
 
 var gl_games;
 var gl_teams;
@@ -21,6 +21,11 @@ var zalog = [
                 {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
                 {nikolay: '-',     ivan: '-',     silviq: '-'},
                 {nikolay: '1 : 1', ivan: '1 : 0', silviq: '2 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '2 : 1', ivan: '2 : 2', silviq: '1 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '2 : 1', ivan: '3 : 0', silviq: '2 : 0'},
+
             ];
 
   $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
@@ -33,13 +38,38 @@ var zalog = [
           $scope.results = arr;
           console.log(arr);
 
+          var today = new Date();
+          var mm = today.getMinutes();
+          var hh = today.getHours();
+          var startingTime;
+          var startingTimeHour;
+          var currentGameTime = 0;
+
+          for(var t = 0; t< gl_games.length; t++){
+            if(gl_games[t].status.toString() === 'IN_PLAY'){
+              startingTime = gl_games[t].date;
+              startingTime = $filter('date')(startingTime, "HH:mm");
+              startingTimeHour = startingTime.slice(0,2);
+                  if(hh.toString() === startingTimeHour){
+                    currentGameTime += mm;
+                    if(currentGameTime >= 45){
+                      currentGameTime = 45;
+                    }else{
+                      currentGameTime += mm + 45;
+                    }
+                  }
+            }
+          }
+
+          $scope.currentGameTime = currentGameTime;
+
           var gamesPlayed = 0;
           var totalGoals = 0;
           var avgGoals = 0;
 
           var betsTotal = 0;
           var betsTotalT = 0;
-          var betSuccessful = 2;
+          var betSuccessful = 3;
           var betsPercent = 0;
 
           for(var m = 0; m < gl_games.length; m++){

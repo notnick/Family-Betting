@@ -12,6 +12,11 @@
     <meta property="og:image"              content="http://www.radiokerry.ie/wp-content/uploads/2014/01/Euro-2016.png" />
 
 
+    <!-- No Cache -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+
 
     <!-- Dont show search box in google -->
     <meta name="google" content="nositelinkssearchbox" />
@@ -48,7 +53,7 @@
                     </div>
                     <div class="profile-hr"></div>
                     <div class="profile-points">
-                      <span>1т.</span>
+                      <span>2т.</span>
                     </div>
                 </div>
                 <div class="profile">
@@ -117,7 +122,11 @@
 
                     <td>{{$index+1}}</td>
                     <td>{{value.date | date:'dd-MM'}}</td>
-                    <td>{{value.date | date:'HH:mm'}}ч<span ng-if="value.status == 'IN_PLAY'"class="isLive3"></span></td>
+                    <td>
+                      <span ng-if="value.status == 'FINISHED' || value.status == 'TIMED'"> {{value.date | date:'HH:mm'}}ч</span>
+                        <span ng-if="value.status == 'IN_PLAY'" class="liveTime">{{currentGameTime}}</span>
+                      <span ng-if="value.status == 'IN_PLAY'"class="isLive3"></span>
+                    </td>
                     <td>
                       <div class="td-exp">
                         <div class="td-exp-inner">{{value.homeTeamName}}</div>

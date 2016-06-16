@@ -19,9 +19,9 @@ a:hover{
   text-decoration: none;
 }
 
-
-
-
+.liveTime{
+  color:red;
+}
 .isLive {
   position: absolute;
   width: 10px;
