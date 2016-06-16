@@ -1,10 +1,19 @@
 
 var app = angular.module('myApp', []);
 
-app.controller('betController',['$http','$sce', '$scope','$log','$filter',function($http, $sce, $scope, $log,$filter){
+app.controller('betController',['$http','$sce', '$scope','$log','$filter','$interval',function($http, $sce, $scope, $log,$filter,$interval){
 
 var gl_games;
 var gl_teams;
+
+var gamesPlayed = 0;
+var totalGoals = 0;
+var avgGoals = 0;
+
+var betsTotal = 0;
+var betsTotalT = 0;
+var betSuccessful = 3;
+var betsPercent = 0;
 
 var zalog = [
                 {nikolay: '2 : 0', ivan: '0 : 1', silviq: '?'},
@@ -38,40 +47,39 @@ var zalog = [
           $scope.results = arr;
           console.log(arr);
 
-          var today = new Date();
-          var mm = today.getMinutes();
-          var hh = today.getHours();
-          var startingTime;
-          var startingTimeHour;
-          var currentGameTime = 0;
 
-          for(var t = 0; t< gl_games.length; t++){
-            if(gl_games[t].status.toString() === 'IN_PLAY'){
-              startingTime = gl_games[t].date;
-              startingTime = $filter('date')(startingTime, "HH:mm");
-              startingTimeHour = startingTime.slice(0,2);
-                  if(hh.toString() === startingTimeHour){
+
+      function getCurrentGameTime(){
+
+        var today = new Date();
+        var mm = today.getMinutes();
+        var hh = today.getHours();
+        var startingTime;
+        var startingTimeHour;
+        var currentGameTime = 0;
+
+        for(var t = 0; t< gl_games.length; t++){
+          if(gl_games[t].status.toString() === 'IN_PLAY'){
+            startingTime = gl_games[t].date;
+            startingTime = $filter('date')(startingTime, "HH:mm");
+            startingTimeHour = startingTime.slice(0,2);
+
+                if(hh.toString() === startingTimeHour.toString()){
                     currentGameTime += mm;
                     if(currentGameTime >= 45){
                       currentGameTime = 45;
-                    }else{
-                      currentGameTime += mm + 45;
                     }
-                  }
-            }
+                }else{
+                  currentGameTime += mm + 45;
+                }
           }
+        }
 
-          $scope.currentGameTime = currentGameTime;
+        $scope.currentGameTime = currentGameTime;
 
-          var gamesPlayed = 0;
-          var totalGoals = 0;
-          var avgGoals = 0;
+      }
 
-          var betsTotal = 0;
-          var betsTotalT = 0;
-          var betSuccessful = 3;
-          var betsPercent = 0;
-
+      function getStats(){
           for(var m = 0; m < gl_games.length; m++){
             if(gl_games[m].status.toString() === 'FINISHED'){
               gamesPlayed++;
@@ -109,11 +117,37 @@ var zalog = [
           $scope.betsPercent = betsPercent;
           $scope.betSuccessful = betSuccessful;
 
+        }
+
 
         var datesArray = [];
         for( var x = 0; x<gl_games.length; x++){
             datesArray.push(gl_games[x].date.slice(5,10));
         }
+
+
+        getStats();
+
+        getCurrentGameTime();
+        $interval(getCurrentGameTime, 30000);
+
+        // th adds +1 to row count
+        function setScoreColours(){
+          var table = document.getElementById('rsTable'),
+              rows = table.rows, rowcount = rows.length, r,
+              cells, cellcount, c, cell;
+
+          for(r = 0; r < rowcount; r++) {
+              cells = rows[r].cells;
+              cellcount = cells.length;
+              for(c = 0; c < cellcount; c++) {
+                  cell = cells[c];
+                  console.log("Cell data: " + cell.innerHTML);
+              }
+          }
+
+        }
+        setScoreColours();
 
       // count duplicates in the date array
         function duplicatesNum(original){
@@ -143,15 +177,7 @@ var zalog = [
 
           $scope.timeline = newArray;
 
-          app.filter('timelineHeight', function () {
-            return function (input) {
-              if (input === 'widescreen') {
-                return '270px';
-              } else {
-                return '360px';
-              }
-            };
-          });
+
           /*
           newDate = newDate.toString().slice(5,10);
           console.log("dates - "+ newDate);
