@@ -8,37 +8,13 @@ $( document ).ready(function() {
   $(".results-table tr:nth-child(1) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(1) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
-  $(".results-table tr:nth-child(2) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(2) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(2) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
-
-  $(".results-table tr:nth-child(3) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(3) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(3) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
-
   $(".results-table tr:nth-child(4) td:nth-child(2)").css("background","rgba(102, 237, 90, 0.5)");
   $(".results-table tr:nth-child(4) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(4) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
-  $(".results-table tr:nth-child(5) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(5) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(5) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
-
-  $(".results-table tr:nth-child(6) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(6) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(6) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
-
   $(".results-table tr:nth-child(7) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(7) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(7) td:nth-child(4)").css("background","rgba(102, 237, 90, 0.5)");
-
-  $(".results-table tr:nth-child(8) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(8) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(8) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
-
-  $(".results-table tr:nth-child(9) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(9) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(9) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
 
   $(".results-table tr:nth-child(10) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(10) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
@@ -52,21 +28,18 @@ $( document ).ready(function() {
   $(".results-table tr:nth-child(12) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(12) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
-  $(".results-table tr:nth-child(13) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(13) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(13) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
-
   $(".results-table tr:nth-child(14) td:nth-child(2)").css("background","rgba(102, 237, 90, 0.5)");
   $(".results-table tr:nth-child(14) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(14) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
-  $(".results-table tr:nth-child(15) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(15) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(15) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
+  $(".results-table tr:nth-child(16) td:nth-child(2)").css("background","rgba(102, 237, 90, 0.5)");
+  $(".results-table tr:nth-child(16) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(16) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
-  $(".results-table tr:nth-child(17) td:nth-child(2)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(17) td:nth-child(3)").css("background","rgba(224, 224, 224, 0.5)");
-  $(".results-table tr:nth-child(17) td:nth-child(4)").css("background","rgba(224, 224, 224, 0.5)");
+  $(".results-table tr:nth-child(18) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(18) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(18) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
 
 
 
@@ -113,6 +86,39 @@ $( document ).ready(function() {
       var i = $(this).index()+1;
       $trs.filter(':nth-child(' + i + ')').removeClass('highlight');
     });
+
+
+    function setScoreColours(){
+      var table = document.getElementById('rsTable'),
+          rows = table.rows, rowcount = rows.length, r,
+          cells, cellcount, c, cell;
+
+      var td  = document.getElementById('rsTable').getElementsByTagName('td');
+      tdcount = td.length;
+
+      for(var t = 0; t < tdcount; t++){
+        if(td[t].innerHTML.toString() === '-'){
+          console.log(td[t].innerHTML.toString());
+          $(td[t]).addClass('scoreTableBG');
+        }
+      }
+ // th adds +1 to row count
+/*
+      for(r = 0; r < rowcount; r++) {
+          cells = rows[r].cells;
+          cellcount = cells.length;
+          for(c = 0; c < cellcount; c++) {
+              cell = cells[c];
+              if(cell.innerHTML.toString() === '-'){
+                  $(td[c]).addClass('scoreTableBG');
+                console.log((cell));
+              }
+          }
+      }
+      */
+
+    }
+    setScoreColours();
 
 
 

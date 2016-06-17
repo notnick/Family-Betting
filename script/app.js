@@ -12,8 +12,10 @@ var avgGoals = 0;
 
 var betsTotal = 0;
 var betsTotalT = 0;
-var betSuccessful = 3;
+var betSuccessful = 4;
 var betsPercent = 0;
+
+var currentHomeScore,currentAwayScore;
 
 var zalog = [
                 {nikolay: '2 : 0', ivan: '0 : 1', silviq: '?'},
@@ -34,8 +36,36 @@ var zalog = [
                 {nikolay: '2 : 1', ivan: '2 : 2', silviq: '1 : 0'},
                 {nikolay: '-',     ivan: '-',     silviq: '-'},
                 {nikolay: '2 : 1', ivan: '3 : 0', silviq: '2 : 0'},
-
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
+                {nikolay: '2 : 0', ivan: '3 : 0', silviq: '1 : 1'},
             ];
+
+// When open the site if any game is live update the score every 2mins.
+  function updateScore(){
+    $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
+        { headers:{'X-Auth-Token': '2d9073763e924684a4162cea8d3817f4'}},{
+        }).success(function (data) {
+          var today = new Date();
+          var mm = today.getMinutes();
+          var hh = today.getHours();
+          console.log("Score Updated"+hh+":"+mm);
+          gl_games = data.fixtures;
+            for(var i = 0; i<gl_games.length;i++){
+              if(gl_games[i].status === 'IN_PLAY'){
+                currentHomeScore = gl_games[i].result.goalsHomeTeam;
+                currentAwayScore = gl_games[i].result.goalsAwayTeam;
+                console.log(currentHomeScore +":"+currentAwayScore );
+              }
+            }
+              $scope.currentHomeScore = currentHomeScore;
+              $scope.currentAwayScore = currentAwayScore;
+        });
+
+    }
+      updateScore();
+     $interval(updateScore, 120 * 1000);
+
 
   $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
       { headers:{'X-Auth-Token': '2d9073763e924684a4162cea8d3817f4'}},{
@@ -104,11 +134,6 @@ var zalog = [
              betsPercent = tmp2.toString().slice(0,4);
           }
 
-          console.log("PL: " + gamesPlayed);
-          console.log("GL: " + totalGoals);
-          console.log("AL: " + avgGoals);
-          console.log("BL: " + betsTotalT);
-          console.log("BL: " + betsPercent);
 
           $scope.gamesPlayed = gamesPlayed;
           $scope.totalGoals = totalGoals;
@@ -131,23 +156,7 @@ var zalog = [
         getCurrentGameTime();
         $interval(getCurrentGameTime, 30000);
 
-        // th adds +1 to row count
-        function setScoreColours(){
-          var table = document.getElementById('rsTable'),
-              rows = table.rows, rowcount = rows.length, r,
-              cells, cellcount, c, cell;
 
-          for(r = 0; r < rowcount; r++) {
-              cells = rows[r].cells;
-              cellcount = cells.length;
-              for(c = 0; c < cellcount; c++) {
-                  cell = cells[c];
-                  console.log("Cell data: " + cell.innerHTML);
-              }
-          }
-
-        }
-        setScoreColours();
 
       // count duplicates in the date array
         function duplicatesNum(original){

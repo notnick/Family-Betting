@@ -53,7 +53,7 @@
                     </div>
                     <div class="profile-hr"></div>
                     <div class="profile-points">
-                      <span>2т.</span>
+                      <span>3т.</span>
                     </div>
                 </div>
                 <div class="profile">
@@ -137,9 +137,11 @@
                           </div>
                         </td>
                     <td>
-                      {{value.result.goalsHomeTeam}}
+                      <span ng-if="value.status === 'FINISHED'">{{value.result.goalsHomeTeam}}</span>
+                      <span ng-if="value.status === 'IN_PLAY'">{{currentHomeScore}}</span>
                       <span ng-if="value.result.goalsHomeTeam != null">:</span>
-                      {{value.result.goalsAwayTeam}}
+                      <span ng-if="value.status === 'FINISHED'">{{value.result.goalsAwayTeam}}</span>
+                      <span ng-if="value.status === 'IN_PLAY'">{{currentAwayScore}}</span>
                       <span ng-if="value.status === 'FINISHED'" class="kr" data-toggle="tooltip"
                       data-placement="right" title="Краен Резултат">КР</span>
                     </td>
