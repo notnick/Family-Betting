@@ -12,13 +12,17 @@ var avgGoals = 0;
 
 var betsTotal = 0;
 var betsTotalT = 0;
-var betSuccessful = 4;
+var betSuccessful = 0;
 var betsPercent = 0;
 
 var currentHomeScore,currentAwayScore;
+var gameResult;
+var betResult;
+
+var nickPoints = 0,ivanPoints = 0,silviqPoints = 0;
 
 var zalog = [
-                {nikolay: '2 : 0', ivan: '0 : 1', silviq: '?'},
+                {nikolay: '2 : 0', ivan: '0 : 1', silviq: '1 : 0'},
                 {nikolay: '-',     ivan: '-',     silviq: '-'},
                 {nikolay: '-',     ivan: '-',     silviq: '-'},
                 {nikolay: '1 : 1', ivan: '2 : 1', silviq: '3 : 1'},
@@ -40,6 +44,9 @@ var zalog = [
                 {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
                 {nikolay: '2 : 0', ivan: '3 : 0', silviq: '1 : 1'},
             ];
+
+
+
 
 // When open the site if any game is live update the score every 2mins.
   function updateScore(){
@@ -78,6 +85,34 @@ var zalog = [
           console.log(arr);
 
 
+
+          // GET CORRECT AMOUT OF BETS RIGHT, NUMBER OF POINTS OF EACH
+      function compareResults(){
+        for(var i = 0;i<gl_games.length; i++){
+          if(gl_games[i].status === 'FINISHED'){
+            gameResult = gl_games[i].result.goalsHomeTeam +" : "+ gl_games[i].result.goalsAwayTeam;
+            for(var p = 0; p < zalog.length; p++){
+               if(gameResult.toString() === zalog[i].nikolay.toString()){
+                 console.log(i +" "+ gameResult +" NIK " + zalog[i].nikolay.toString());
+                 nickPoints++;
+               }else if(gameResult.toString() === zalog[i].ivan.toString()){
+                 console.log(i +" "+ gameResult +" IVAN " + zalog[i].ivan.toString());
+                 ivanPoints++;
+               }else if(gameResult.toString() === zalog[i].silviq.toString()){
+                 console.log(i +" "+ gameResult +" Silviq " + zalog[i].silviq.toString());
+                 silviqPoints++;
+               }
+
+            }
+          }
+        }
+      }
+      compareResults();
+      $scope.nickPoints = nickPoints/zalog.length;
+      $scope.ivanPoints = ivanPoints/zalog.length;
+      $scope.silviqPoints = silviqPoints/zalog.length;
+      betSuccessful = nickPoints/zalog.length + ivanPoints/zalog.length + silviqPoints/zalog.length;
+      console.log(nickPoints/zalog.length +" "+ ivanPoints/zalog.length + " " + silviqPoints/zalog.length);
 
       function getCurrentGameTime(){
 

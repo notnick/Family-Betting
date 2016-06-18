@@ -2,6 +2,10 @@ background-color: #fa2323;
 color: #eee   / gray
 color :fff  / white
 
+
+if(zalog[y].nikolay.toString() === gameResult){
+  console.log(zalog[y].nikolay.toString()+":"+ gameResult);
+}
 <div class="col-md-12">
     <div class="col-md-8 col-md-offset-2 stats-box">
         <div class="col-md-4 stats-type">

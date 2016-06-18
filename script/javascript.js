@@ -3,7 +3,6 @@ $( document ).ready(function() {
 
 
 
-
   $(".results-table tr:nth-child(1) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(1) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(1) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
@@ -39,6 +38,14 @@ $( document ).ready(function() {
   $(".results-table tr:nth-child(18) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(18) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(18) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(20) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(20) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(20) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(21) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(21) td:nth-child(3)").css("background","rgba(102, 237, 90, 0.5)");
+  $(".results-table tr:nth-child(21) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
 
 
@@ -88,6 +95,8 @@ $( document ).ready(function() {
     });
 
 
+
+
     function setScoreColours(){
       var table = document.getElementById('rsTable'),
           rows = table.rows, rowcount = rows.length, r,
@@ -98,27 +107,34 @@ $( document ).ready(function() {
 
       for(var t = 0; t < tdcount; t++){
         if(td[t].innerHTML.toString() === '-'){
-          console.log(td[t].innerHTML.toString());
           $(td[t]).addClass('scoreTableBG');
         }
       }
- // th adds +1 to row count
-/*
-      for(r = 0; r < rowcount; r++) {
-          cells = rows[r].cells;
-          cellcount = cells.length;
-          for(c = 0; c < cellcount; c++) {
-              cell = cells[c];
-              if(cell.innerHTML.toString() === '-'){
-                  $(td[c]).addClass('scoreTableBG');
-                console.log((cell));
-              }
-          }
-      }
-      */
+
+
+
+
 
     }
     setScoreColours();
+
+    function compareCorrectResults(){
+      var table = document.getElementById('rsTable'),
+      rows = table.rows, rowcount = rows.length, r,
+      cells, cellcount, c, cell;
+       // th adds +1 to row count
+            for(r = 0; r < rowcount; r++) {
+                cells = rows[r].cells;
+                cellcount = cells.length;
+                for(c = 0; c < cellcount; c++) {
+                    cell = cells[c];
+
+                      console.log((cell));
+
+                }
+            }
+
+    }
 
 
 
