@@ -19,6 +19,60 @@ a:hover{
   text-decoration: none;
 }
 
+.previousGamesBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pgContent{
+  font-size: 1.2em;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(18, 73, 135, 0.88);
+
+}
+.pgTeams{
+  display: inline-block;
+  width: 80%;
+  border-right: 1px solid rgba(18, 73, 135, 0.88);
+}
+.pgScore{
+  display: inline-block;
+  width: 15%;
+}
+.mo-header{
+  width: 100%;
+  background-color: rgba(18, 73, 135, 0.88);
+  color:white;
+  text-align: left;
+  font-size: 1.3em;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.mo-header span{
+  margin-left: 8px;
+}
+
+.modal-body {
+    padding: 5px;
+}
+.close {
+    float: right;
+    margin-right: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 1;
+    color: white;
+    opacity: 1;
+}
+.pgBG{
+  background:rgba(45, 94, 149, 0.25);
+}
+.pgBorder{
+
+}
+
 .scoreTableBG{
   background-color: rgba(224, 224, 224, 0.5);
 }
@@ -178,6 +232,7 @@ td{
 .td-exp-inner{
   display:inline-block;
   width:35%;
+  cursor:pointer;
 }
 .td-exp-inner-2{
   display:inline-block;
@@ -280,22 +335,26 @@ td{
   .results-table td{
     height: 36px;
     }
+    .modal-dialog {
+      margin: 170px auto;
+    }
 }
 
-/*
-TARGET ONYL IPAD>Width
- */
+ /*
+ TARGET ONYL IPAD > Width
+  */
 @media(max-width: 1024px){
 
   .profile-container{
     background-size: 100% 100%;
         background-repeat: no-repeat;
   }
+  .modal-dialog {
+    margin: 170px auto;
+  }
 }
 
 @media(max-width: 768px){
-
-
   .profile{
     margin:0px;
     margin-left: 5px;
@@ -346,7 +405,7 @@ TARGET ONYL IPAD>Width
     font-size: 1.1em;
   }
   .stat-lrg{
-    font-size:1em;
+    font-size:1.4em;
     color:#1a599c;
   }
 

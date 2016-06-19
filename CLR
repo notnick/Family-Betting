@@ -2,6 +2,20 @@ background-color: #fa2323;
 color: #eee   / gray
 color :fff  / white
 
+//ng-if="divEnabled" is not in the dom! we enable it in the controller on the click divEnable = true
+//Using ng-show with a controller
+//$scope.divEnabled = false;
+
+<div ng-if="divEnabled" class="previousGamesBox">
+  <div class="pgContent" ng-repeat="(key,value) in lastGamesPlayed">
+    <div class="pgTeams">
+      <span>{{value.homeTeamName}} - {{value.awayTeamName}}</span>
+    </div>
+    <div class="pgScore">
+      <span>{{value.result.goalsHomeTeam}}:{{value.result.goalsAwayTeam}}</span>
+    </div>
+  </div>
+</div>
 
 if(zalog[y].nikolay.toString() === gameResult){
   console.log(zalog[y].nikolay.toString()+":"+ gameResult);

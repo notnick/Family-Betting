@@ -41,6 +41,40 @@
       &lt;div id="noscript"&gt;Вашият браузър не поддържа Java Script или сте го изключили. Поради тази причина, този сайт може да бъде възпроизведен само отчасти. Моля активирайте Javascript във вашия браузър.&lt;/div&gt;
     </noscript>
 
+    <div modal="showModal" class="modal fade" role="dialog" id="score">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-body">
+            <div class="mo-header">
+              <span>{{teamName}}</span>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="previousGamesBox">
+              <div class="pgContent" ng-repeat="(key,value) in lastGamesPlayed">
+                <div class="pgTeams">
+                  <span class="pgBorder">
+                    <span class="pgBG" ng-if="value.homeTeamName === teamName">{{value.homeTeamName}}</span>
+                    <span ng-if="value.homeTeamName != teamName">{{value.homeTeamName}}</span>
+                      -
+                      <span class="pgBG" ng-if="value.awayTeamName === teamName">{{value.awayTeamName}}</span>
+                      <span ng-if="value.awayTeamName != teamName">{{value.awayTeamName}}</span>
+                  </span>
+                </div>
+                <div class="pgScore">
+                  <span>
+                    {{value.result.goalsHomeTeam}}
+              <span ng-if="value.result.goalsHomeTeam != null">:</span>
+              <span ng-if="value.result.goalsHomeTeam === null">-</span>
+                    {{value.result.goalsAwayTeam}}
+                  </span>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <div class="container">
           <div class="col-md-12">
             <div class="profile-container">
@@ -128,12 +162,12 @@
                     </td>
                     <td>
                       <div class="td-exp">
-                        <div class="td-exp-inner">{{value.homeTeamName}}</div>
+                        <div class="td-exp-inner" data-target="#score" data-toggle="modal" ng-click="getLastFiveGames(value._links.homeTeam.href,value.homeTeamName)">{{value.homeTeamName}}</div>
                         <div class="td-exp-inner-2"><span class="team-flag"ng-init = "homeT = getFlag(value.homeTeamName)">
                           <img alt="flag"ng-src="{{homeT}}" /></span></div> <div class="td-exp-inner-3">-</div>
                           <div class="td-exp-inner-2"><span class="team-flag"ng-init = "awayT = getFlag(value.awayTeamName)">
                             <img alg="flag"ng-src="{{awayT}}" /></span></div>
-                            <div class="td-exp-inner">{{value.awayTeamName}}</div>
+                            <div class="td-exp-inner" data-target="#score" data-toggle="modal" ng-click="getLastFiveGames(value._links.awayTeam.href,value.awayTeamName)">{{value.awayTeamName}}</div>
                           </div>
                         </td>
                     <td>
@@ -167,6 +201,10 @@
                     </tr>
                 </table>
               </div>
+
+
+
+
 
             </div> <!-- Mw-->
             </div>

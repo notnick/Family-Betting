@@ -43,9 +43,30 @@ var zalog = [
                 {nikolay: '-',     ivan: '-',     silviq: '-'},
                 {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
                 {nikolay: '2 : 0', ivan: '3 : 0', silviq: '1 : 1'},
+                {nikolay: '1 : 1', ivan: '3 : 1', silviq: '2 : 2'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 0', ivan: '2 : 0', silviq: '2 : 0'},
             ];
+$scope.zalog = zalog;
 
-
+// Doing this because the 36 array doesnt know the full URI to the
+// fixture game. we need to slice the last 3-4 digits to get it. --><--
+$scope.getLastFiveGames = function(teamURI,clTeamName){
+  var teamId = teamURI.slice(38);
+  var teamName = clTeamName.toString();
+  $http.get('http://api.football-data.org/v1/teams/'+teamId+'/fixtures',
+      { headers:{'X-Auth-Token': '2d9073763e924684a4162cea8d3817f4'}},{
+      }).success(function (data) {
+        var lastGamesPlayed = data.fixtures;
+        $scope.showModal = true;
+        $scope.teamName = teamName;
+        console.log(lastGamesPlayed);
+        $scope.lastGamesPlayed = lastGamesPlayed;
+        for(var i = 0; i < lastGamesPlayed.length; i++){
+          console.log(lastGamesPlayed[i].homeTeamName+":"+ lastGamesPlayed[i].awayTeamName);
+        }
+      });
+};
 
 
 // When open the site if any game is live update the score every 2mins.
@@ -285,14 +306,6 @@ var zalog = [
 
 
           });
-
-
-
-
-
-  $scope.zalog = zalog;
-
-
 
   $log.info($scope);
 
