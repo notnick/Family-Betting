@@ -30,7 +30,6 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="script/app.js" type="text/javascript"></script>
-
     <title>Евро 2016</title>
   </head>
   <body  ng-controller="betController">
@@ -172,10 +171,12 @@
                         </td>
                     <td>
                       <span ng-if="value.status === 'FINISHED'">{{value.result.goalsHomeTeam}}</span>
-                      <span ng-if="value.status === 'IN_PLAY'">{{currentHomeScore}}</span>
+                      <span ng-if="value.status === 'IN_PLAY' && $index === currentIndexPlaying">{{currentHomeScore}}</span>
+                      <span ng-if="value.status === 'IN_PLAY' && $index != currentIndexPlaying">{{value.result.goalsHomeTeam}}</span>
                       <span ng-if="value.result.goalsHomeTeam != null">:</span>
                       <span ng-if="value.status === 'FINISHED'">{{value.result.goalsAwayTeam}}</span>
-                      <span ng-if="value.status === 'IN_PLAY'">{{currentAwayScore}}</span>
+                      <span ng-if="value.status === 'IN_PLAY' && $index === currentIndexPlaying">{{currentAwayScore}}</span>
+                      <span ng-if="value.status === 'IN_PLAY' && $index != currentIndexPlaying">{{value.result.goalsAwayTeam}}</span>
                       <span ng-if="value.status === 'FINISHED'" class="kr" data-toggle="tooltip"
                       data-placement="right" title="Краен Резултат">КР</span>
                     </td>

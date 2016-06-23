@@ -1,6 +1,4 @@
-
-$( document ).ready(function() {
-
+$(document).ready(function() {
 
 
   $(".results-table tr:nth-child(1) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
@@ -47,8 +45,38 @@ $( document ).ready(function() {
   $(".results-table tr:nth-child(21) td:nth-child(3)").css("background","rgba(102, 237, 90, 0.5)");
   $(".results-table tr:nth-child(21) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
+  $(".results-table tr:nth-child(22) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(22) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(22) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(24) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(24) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(24) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(25) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(25) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(25) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(26) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(26) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(26) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(27) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(27) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(27) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(28) td:nth-child(2)").css("background","rgba(102, 237, 90, 0.5)");
+  $(".results-table tr:nth-child(28) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(28) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
+
+  $(".results-table tr:nth-child(31) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(31) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(31) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
 
+  $(".results-table tr:nth-child(32) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(32) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
+  $(".results-table tr:nth-child(32) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
 
    var today = new Date();
    var dd = today.getDate();
@@ -82,7 +110,6 @@ $( document ).ready(function() {
 // Two Dynamic tables - same row highlight
 
    $(document).on("mouseenter", "table.grid tr:not(:first-child)", function() {
-     console.log("hover");
      var $trs = $('table.grid tr:not(:first-child)');
      var i = $(this).index()+1;
      $trs.filter(':nth-child(' + i + ')').addClass('highlight');

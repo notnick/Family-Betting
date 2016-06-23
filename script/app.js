@@ -15,11 +15,14 @@ var betsTotalT = 0;
 var betSuccessful = 0;
 var betsPercent = 0;
 
-var currentHomeScore,currentAwayScore;
+var currentHomeScore = 0;
+var currentAwayScore = 0;
+
 var gameResult;
 var betResult;
 
 var nickPoints = 0,ivanPoints = 0,silviqPoints = 0;
+var currentIndexPlaying;
 
 var zalog = [
                 {nikolay: '2 : 0', ivan: '0 : 1', silviq: '1 : 0'},
@@ -46,9 +49,30 @@ var zalog = [
                 {nikolay: '1 : 1', ivan: '3 : 1', silviq: '2 : 2'},
                 {nikolay: '-',     ivan: '-',     silviq: '-'},
                 {nikolay: '1 : 0', ivan: '2 : 0', silviq: '2 : 0'},
+                {nikolay: '1 : 1', ivan: '1 : 0', silviq: '2 : 0'},
+                {nikolay: '0 : 2', ivan: '0 : 2', silviq: '0 : 1'},
+                {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
+                {nikolay: '0 : 0', ivan: '2 : 1', silviq: '0 : 1'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 0', ivan: '2 : 1', silviq: '2 : 1'},
+                {nikolay: '2 : 2', ivan: '1 : 1', silviq: '0 : 2'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '1 : 1', silviq: '1 : 0'},
+                {nikolay: '1 : 0', ivan: '1 : 2', silviq: '3 : 1'},
             ];
 $scope.zalog = zalog;
 
+/*
+var zalog1;
+var url = "script/betsdata.json";
+    $http.get(url).success( function(dta) {
+        console.log(dta);
+        $scope.zalog1 = dta;
+        zalog1 = dta;
+     });
+*/
 // Doing this because the 36 array doesnt know the full URI to the
 // fixture game. we need to slice the last 3-4 digits to get it. --><--
 $scope.getLastFiveGames = function(teamURI,clTeamName){
@@ -83,11 +107,14 @@ $scope.getLastFiveGames = function(teamURI,clTeamName){
               if(gl_games[i].status === 'IN_PLAY'){
                 currentHomeScore = gl_games[i].result.goalsHomeTeam;
                 currentAwayScore = gl_games[i].result.goalsAwayTeam;
-                console.log(currentHomeScore +":"+currentAwayScore );
+                currentHomeTeamPlaying = gl_games[i].homeTeamName;
+                console.log(i + currentHomeTeamPlaying + " "+currentHomeScore +":"+currentAwayScore );
+                $scope.currentHomeScore = currentHomeScore;
+                $scope.currentAwayScore = currentAwayScore;
+                $scope.currentIndexPlaying = i;
               }
             }
-              $scope.currentHomeScore = currentHomeScore;
-              $scope.currentAwayScore = currentAwayScore;
+
         });
 
     }
@@ -113,6 +140,8 @@ $scope.getLastFiveGames = function(teamURI,clTeamName){
           if(gl_games[i].status === 'FINISHED'){
             gameResult = gl_games[i].result.goalsHomeTeam +" : "+ gl_games[i].result.goalsAwayTeam;
             for(var p = 0; p < zalog.length; p++){
+              console.log("I is: " + i);
+
                if(gameResult.toString() === zalog[i].nikolay.toString()){
                  console.log(i +" "+ gameResult +" NIK " + zalog[i].nikolay.toString());
                  nickPoints++;
@@ -151,16 +180,20 @@ $scope.getLastFiveGames = function(teamURI,clTeamName){
             startingTimeHour = startingTime.slice(0,2);
 
                 if(hh.toString() === startingTimeHour.toString()){
-                    currentGameTime += mm;
+                    currentGameTime = mm;
                     if(currentGameTime >= 45){
                       currentGameTime = 45;
                     }
-                }else{
-                  currentGameTime += mm + 45;
+                }else if(hh.toString() != startingTimeHour.toString()){
+                  //var timetemp = mm + 45;
+                  currentGameTime = 45 + mm;
                 }
           }
         }
 
+        if(currentGameTime >= 90){
+          currentGameTime = 90;
+        }
         $scope.currentGameTime = currentGameTime;
 
       }
