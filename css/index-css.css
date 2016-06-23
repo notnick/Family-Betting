@@ -19,6 +19,45 @@ a:hover{
   text-decoration: none;
 }
 
+
+/* Nav - Tabs */
+
+.tabs-wrapper{
+  padding-top: 25px;
+  padding-bottom: 8px;
+}
+
+.nav-tabs{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.nav-tabs > li {
+    float:left;
+    margin-bottom: -1px;
+}
+.nav-tabs > li > a{
+    font-size: 1.1em;
+}
+
+.nav-tabs{
+  border-bottom:1px solid rgba(18, 73, 135, 0.88);
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  border: 1px solid rgba(18, 73, 135, 0.88);
+  border-bottom-color: transparent;
+
+}
+.nav-tabs > li > a:hover {
+  border-color: rgba(18, 73, 135, 0.88);
+  color:white;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  background-color: rgba(18, 73, 135, 0.88);
+}
+
 .previousGamesBox{
   display: flex;
   flex-direction: column;
@@ -355,6 +394,11 @@ td{
 }
 
 @media(max-width: 768px){
+
+  .nav > li > a {
+    padding: 1px 2px;
+}
+
   .profile{
     margin:0px;
     margin-left: 5px;

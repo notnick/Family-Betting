@@ -140,7 +140,6 @@ $scope.getLastFiveGames = function(teamURI,clTeamName){
           if(gl_games[i].status === 'FINISHED'){
             gameResult = gl_games[i].result.goalsHomeTeam +" : "+ gl_games[i].result.goalsAwayTeam;
             for(var p = 0; p < zalog.length; p++){
-              console.log("I is: " + i);
 
                if(gameResult.toString() === zalog[i].nikolay.toString()){
                  console.log(i +" "+ gameResult +" NIK " + zalog[i].nikolay.toString());
