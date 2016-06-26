@@ -1,0 +1,78 @@
+
+
+
+
+<div class="col-md-8">
+  <table class="table  cust-table  table-striped table-condensed grid table-games"  id="result-tbl">
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Дата</th>
+          <th>Час</th>
+          <th>Мач</th>
+          <th>Резултат</th>
+      </tr>
+  </thead>
+    <tr  ng-cloak ng-repeat="(key,value) in results.slice(0,36)" >
+        <td>{{$index+1}}</td>
+        <td>{{value.date | date:'dd-MM'}}</td>
+        <td>
+          <span ng-if="value.status == 'FINISHED' || value.status == 'TIMED'"> {{value.date | date:'HH:mm'}}ч</span>
+            <span ng-if="value.status == 'IN_PLAY'" class="liveTime">{{currentGameTime}}</span>
+          <span ng-if="value.status == 'IN_PLAY'"class="isLive3"></span>
+        </td>
+        <td>
+          <div class="td-exp">
+            <div class="td-exp-inner" data-target="#score" data-toggle="modal" ng-click="getLastFiveGames(value._links.homeTeam.href,value.homeTeamName)">{{value.homeTeamName}}</div>
+            <div class="td-exp-inner-2"><span class="team-flag"ng-init = "homeT = getFlag(value.homeTeamName)">
+              <img alt="flag"ng-src="{{homeT}}" /></span></div> <div class="td-exp-inner-3">-</div>
+              <div class="td-exp-inner-2"><span class="team-flag"ng-init = "awayT = getFlag(value.awayTeamName)">
+                <img alg="flag"ng-src="{{awayT}}" /></span></div>
+                <div class="td-exp-inner" data-target="#score" data-toggle="modal" ng-click="getLastFiveGames(value._links.awayTeam.href,value.awayTeamName)">{{value.awayTeamName}}</div>
+              </div>
+            </td>
+        <td>
+          <span ng-if="value.status === 'FINISHED'">{{value.result.goalsHomeTeam}}</span>
+          <span ng-if="value.status === 'IN_PLAY' && $index === currentIndexPlaying">{{currentHomeScore}}</span>
+          <span ng-if="value.status === 'IN_PLAY' && $index != currentIndexPlaying">{{value.result.goalsHomeTeam}}</span>
+          <span ng-if="value.result.goalsHomeTeam != null">:</span>
+          <span ng-if="value.status === 'FINISHED'">{{value.result.goalsAwayTeam}}</span>
+          <span ng-if="value.status === 'IN_PLAY' && $index === currentIndexPlaying">{{currentAwayScore}}</span>
+          <span ng-if="value.status === 'IN_PLAY' && $index != currentIndexPlaying">{{value.result.goalsAwayTeam}}</span>
+          <span ng-if="value.status === 'FINISHED'" class="kr" data-toggle="tooltip"
+          data-placement="right" title="Краен Резултат">КР</span>
+        </td>
+    </tr>
+
+</table>
+</div>
+  <div class="col-md-4">
+    <table  class="table  cust-table table-striped table-condensed results-table grid"  id="rsTable" >
+      <thead>
+          <tr>
+              <th>#</th>
+              <th>Николай</th>
+              <th>Иван</th>
+              <th>Силвия</th>
+          </tr>
+      </thead>
+        <tr  ng-cloak ng-repeat="(key,value) in zalog.slice(0,36)"  >
+            <td>{{$index+1}}</td>
+            <td>
+              <div ng-if="getCorrectColor($index,value.nikolay) === 'won'  " class="bet-won-color">{{value.nikolay}}</div>
+              <div ng-if="getCorrectColor($index,value.nikolay) === 'lost' " class="bet-lost-color">{{value.nikolay}}</div>
+              <div ng-if="getCorrectColor($index,value.nikolay) === 'non'  " >{{value.nikolay}}</div>
+            </td>
+            <td>
+              <div ng-if="getCorrectColor($index,value.ivan) === 'won'  " class="bet-won-color">{{value.ivan}}</div>
+              <div ng-if="getCorrectColor($index,value.ivan) === 'lost' " class="bet-lost-color">{{value.ivan}}</div>
+              <div ng-if="getCorrectColor($index,value.ivan) === 'non'  " >{{value.ivan}}</div>
+            </td>
+            <td>
+              <div ng-if="getCorrectColor($index,value.silviq) === 'won'  " class="bet-won-color">{{value.silviq}}</div>
+              <div ng-if="getCorrectColor($index,value.silviq) === 'lost' " class="bet-lost-color">{{value.silviq}}</div>
+              <div ng-if="getCorrectColor($index,value.silviq) === 'non'  " >{{value.silviq}}</div>
+            </td>
+        </tr>
+    </table>
+  </div>

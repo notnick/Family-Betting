@@ -19,12 +19,34 @@ a:hover{
   text-decoration: none;
 }
 
-
+.empty-wrapper{
+  min-height: 600px;
+}
+.bet-won-color{
+  width:100%;
+  height:100%;
+  background-color: rgba(102, 237, 90, 0.5);
+}
+.bet-lost-color{
+  width:100%;
+  height:100%;
+  background-color: rgba(238, 83, 80, 0.5);
+}
+.bet-non-color{
+  width:100%;
+  height:100%;
+  background-color: rgba(224, 224, 224, 0.5);
+}
+.txt-color{
+  background-color: black;
+  color:red;
+  font-size:1.1em;
+}
 /* Nav - Tabs */
 
 .tabs-wrapper{
   padding-top: 25px;
-  padding-bottom: 8px;
+  padding-bottom: 25px;
 }
 
 .nav-tabs{
@@ -37,7 +59,7 @@ a:hover{
     margin-bottom: -1px;
 }
 .nav-tabs > li > a{
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 .nav-tabs{
@@ -46,7 +68,7 @@ a:hover{
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   border: 1px solid rgba(18, 73, 135, 0.88);
   border-bottom-color: transparent;
-
+  color: black;
 }
 .nav-tabs > li > a:hover {
   border-color: rgba(18, 73, 135, 0.88);
@@ -62,6 +84,7 @@ a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 }
 .pgContent{
   font-size: 1.2em;
@@ -219,7 +242,7 @@ a:hover{
   margin-bottom: 10px;
 }
 .profile-points{
-  font-size:1.3em;
+  font-size: 1.5em;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -230,6 +253,7 @@ a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
 }
 
 .highlight{
@@ -249,7 +273,7 @@ a:hover{
   border:1px solid #eee;
 }
 .table{
-  margin-top: 12px;
+  margin-top: 30px;
 }
 th{
   font-weight: normal;
@@ -324,6 +348,7 @@ td{
 }
 
 
+
 .footer-txt{
   text-align: center;
   color:black;
@@ -362,10 +387,8 @@ td{
 }
 .stat-sm{
   font-size:1.1em;
+  padding-left:5px;
 }
-
-
-
 
 @media (min-width: 1025px){
   .table-games td{

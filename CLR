@@ -3,6 +3,36 @@ color: #eee   / gray
 color :fff  / white
     background-color: rgba(18, 73, 135, 0.88); // euro-blue
 
+
+    $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
+        { headers:{'X-Auth-Token': '2d9073763e924684a4162cea8d3817f4'}},{
+        }).success(function (data) {
+
+          /*
+            for(var i = 0; i < data.fixtures.length; i++){
+              staticResults.push(data.fixtures[i]);
+            }
+          */
+
+        });
+
+    for(var i = 0;i<gl_games.length; i++){
+      if(gl_games[i].status === 'FINISHED'){
+        gameResult = gl_games[i].result.goalsHomeTeam +" : "+ gl_games[i].result.goalsAwayTeam;
+          if(gameResult.toString() === zalog[i].nikolay.toString()){
+              console.log(i +" "+ gameResult +" NNN " + zalog[i].nikolay.toString());
+              if(ppp.toString() === zalog[i].nikolay.toString())
+                    {
+                      return true;
+                    }
+          }else if(gameResult.toString() === zalog[i].ivan.toString()){
+            console.log(i +" "+ gameResult +" III " + zalog[i].ivan.toString());
+          }else if(gameResult.toString() === zalog[i].silviq.toString()){
+            console.log(i +" "+ gameResult +" SSS " + zalog[i].silviq.toString());
+          }
+  }
+}
+
 <div class="col-md-12">
   <div class="row">
   <!-- Nav tabs -->

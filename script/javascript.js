@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+/*
   $(".results-table tr:nth-child(1) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(1) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(1) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
@@ -77,7 +77,7 @@ $(document).ready(function() {
   $(".results-table tr:nth-child(32) td:nth-child(2)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(32) td:nth-child(3)").css("background","rgba(238, 83, 80, 0.5)");
   $(".results-table tr:nth-child(32) td:nth-child(4)").css("background","rgba(238, 83, 80, 0.5)");
-
+*/
    var today = new Date();
    var dd = today.getDate();
    var mm = today.getMonth()+1;
@@ -137,13 +137,9 @@ $(document).ready(function() {
           $(td[t]).addClass('scoreTableBG');
         }
       }
-
-
-
-
-
     }
-    setScoreColours();
+
+    //setScoreColours();
 
     function compareCorrectResults(){
       var table = document.getElementById('rsTable'),

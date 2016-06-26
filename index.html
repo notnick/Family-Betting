@@ -25,11 +25,10 @@
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="ico/20.ico">
-    <link rel="stylesheet"  href="css/index-css.css">
+    <link rel="stylesheet"  href="css/index-css_0.5.css">
 
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    <script src="script/app.js" type="text/javascript"></script>
+
     <title>Евро 2016</title>
   </head>
   <body  ng-controller="betController">
@@ -76,7 +75,7 @@
 
     <div class="container">
           <div class="col-md-12">
-            <div class="profile-container">
+            <div class="profile-container" ng-cloak>
                 <div class="profile">
                     <div class="profile-pic" id="pp-1">
                       <img src="img/p2.png" alt="Pic" class="img img-responsive img-circle" />
@@ -110,7 +109,7 @@
                   </div>
                   <div class="profile-hr"></div>
                   <div class="profile-points">
-                    <span>{{silviqPoints}}т.</span>
+                    <span >{{silviqPoints}}т.</span>
                   </div>
                 </div>
             </div>
@@ -118,7 +117,7 @@
 
           <div class="col-md-12" id="cnt-target">
             <div class="main-wrapper container">
-              <div class="row">
+              <div class="row" ng-cloak>
               <div class="col-md-12">
                   <div class="col-md-8 col-md-offset-2 stats-box">
                       <div class="col-md-4 col-xs-4 stats-type">
@@ -146,97 +145,24 @@
                     <div class="tabs-wrapper">
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#1" aria-controls="home" role="tab" data-toggle="tab">Групова фаза</a></li>
-                        <li role="presentation"><a href="#2" aria-controls="profile" role="tab" data-toggle="tab">1/8 Финали</a></li>
-                        <li role="presentation" class="disabled"><a href="#" aria-controls="settings" role="tab" data-toggle="tab">1/4 Финали</a></li>
-                        <li role="presentation" class="disabled"><a href="#" aria-controls="settings" role="tab" data-toggle="tab">1/2 Финали</a></li>
-                        <li role="presentation" class="disabled"><a href="#" aria-controls="settings" role="tab" data-toggle="tab">Финал</a></li>
+                        <li role="presentation"><a href="#round24" aria-controls="home" role="tab" data-toggle="tab">Групова фаза</a></li>
+                        <li role="presentation" class="active"><a href="#round16" aria-controls="profile" role="tab" data-toggle="tab">1/8 Финали</a></li>
+                        <li role="presentation" class="disabled"><a href="#round8" aria-controls="settings" role="tab" data-toggle="tab">1/4 Финали</a></li>
+                        <li role="presentation" class="disabled"><a href="#round8" aria-controls="settings" role="tab" data-toggle="tab">1/2 Финали</a></li>
+                        <li role="presentation" class="disabled"><a href="#round8" aria-controls="settings" role="tab" data-toggle="tab">Финал</a></li>
                       </ul>
 
                       <div class="tab-content">
-                        <div role="tabpanel" class=" tab-pane fade in active" id="1">
+                        <div role="tabpanel" class=" tab-pane fade in active" >
                             <div class="tab-content-box">
-                              <h1>hola at ya boi</h1>
-                              <h1>hola at ya boi</h1>
-                              <h1>hola at ya boi</h1>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class=" tab-pane fade" id="2">
-                            <div class="tab-content-box">
-                              <h1>xxxx</h1>
-                              <h1>x at ya boi</h1>
-                              <h1>hola at x boi</h1>
-
+                              <div ng-view></div>
                             </div>
                         </div>
                       </div>
+
                     </div>
                 </div>
               </div>
-
-            <div class="col-md-8">
-              <table class="table  cust-table  table-striped table-condensed grid table-games"  id="result-tbl">
-              <thead>
-                  <tr>
-                      <th>#</th>
-                      <th>Дата</th>
-                      <th>Час</th>
-                      <th>Мач</th>
-                      <th>Резултат</th>
-                  </tr>
-              </thead>
-                <tr  ng-cloak ng-repeat="(key,value) in results" >
-                    <td>{{$index+1}}</td>
-                    <td>{{value.date | date:'dd-MM'}}</td>
-                    <td>
-                      <span ng-if="value.status == 'FINISHED' || value.status == 'TIMED'"> {{value.date | date:'HH:mm'}}ч</span>
-                        <span ng-if="value.status == 'IN_PLAY'" class="liveTime">{{currentGameTime}}</span>
-                      <span ng-if="value.status == 'IN_PLAY'"class="isLive3"></span>
-                    </td>
-                    <td>
-                      <div class="td-exp">
-                        <div class="td-exp-inner" data-target="#score" data-toggle="modal" ng-click="getLastFiveGames(value._links.homeTeam.href,value.homeTeamName)">{{value.homeTeamName}}</div>
-                        <div class="td-exp-inner-2"><span class="team-flag"ng-init = "homeT = getFlag(value.homeTeamName)">
-                          <img alt="flag"ng-src="{{homeT}}" /></span></div> <div class="td-exp-inner-3">-</div>
-                          <div class="td-exp-inner-2"><span class="team-flag"ng-init = "awayT = getFlag(value.awayTeamName)">
-                            <img alg="flag"ng-src="{{awayT}}" /></span></div>
-                            <div class="td-exp-inner" data-target="#score" data-toggle="modal" ng-click="getLastFiveGames(value._links.awayTeam.href,value.awayTeamName)">{{value.awayTeamName}}</div>
-                          </div>
-                        </td>
-                    <td>
-                      <span ng-if="value.status === 'FINISHED'">{{value.result.goalsHomeTeam}}</span>
-                      <span ng-if="value.status === 'IN_PLAY' && $index === currentIndexPlaying">{{currentHomeScore}}</span>
-                      <span ng-if="value.status === 'IN_PLAY' && $index != currentIndexPlaying">{{value.result.goalsHomeTeam}}</span>
-                      <span ng-if="value.result.goalsHomeTeam != null">:</span>
-                      <span ng-if="value.status === 'FINISHED'">{{value.result.goalsAwayTeam}}</span>
-                      <span ng-if="value.status === 'IN_PLAY' && $index === currentIndexPlaying">{{currentAwayScore}}</span>
-                      <span ng-if="value.status === 'IN_PLAY' && $index != currentIndexPlaying">{{value.result.goalsAwayTeam}}</span>
-                      <span ng-if="value.status === 'FINISHED'" class="kr" data-toggle="tooltip"
-                      data-placement="right" title="Краен Резултат">КР</span>
-                    </td>
-                </tr>
-
-            </table>
-          </div>
-              <div class="col-md-4">
-                <table  class="table  cust-table table-striped table-condensed results-table grid"  id="rsTable" >
-                  <thead>
-                      <tr>
-                          <th>#</th>
-                          <th>Николай</th>
-                          <th>Иван</th>
-                          <th>Силвия</th>
-                      </tr>
-                  </thead>
-                    <tr  ng-cloak ng-repeat="(key,value) in zalog"  >
-                        <td>{{$index+1}}</td>
-                        <td>{{value.nikolay}}</td>
-                        <td>{{value.ivan}}</td>
-                        <td>{{value.silviq}}</td>
-                    </tr>
-                </table>
-              </div>
-
 
 
 
@@ -259,8 +185,14 @@
     </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
+    <script src="script/app.js" type="text/javascript"></script>
+
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="script/javascript.js" type="text/javascript"></script>
+
 
   </body>
 </html>
