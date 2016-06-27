@@ -3,6 +3,39 @@ color: #eee   / gray
 color :fff  / white
     background-color: rgba(18, 73, 135, 0.88); // euro-blue
 
+    var postData = {
+        nikolay: value,
+        ivan: value2,
+        silviq: value3
+      };
+
+      var updates = {};
+      updates[index + '/'] = postData;
+      databseRef.update(updates);
+
+
+    $scope.nickChangeInput = function(index,value,value2,value3){
+      index = index + 36;
+      if(nikIdIs === true){
+        firebase.database().ref('data/' + index + '/nikolay').set({
+              nikolay: value
+          });
+      }else{
+        console.log( 'Not Writing!' );
+      }
+    };
+
+
+    for(var i = 0; i < document.getElementsByClassName('inputNik').length; i++){
+      document.getElementsByClassName('inputNik')[i].removeAttribute('readOnly');
+      document.getElementsByClassName('inputIvan')[i].setAttribute('readOnly','readOnly');
+      document.getElementsByClassName('inputSil')[i].setAttribute('readOnly','readOnly');
+    }
+
+
+    document.getElementById('inputNik').setAttribute('disabled', 'disabled');
+    document.getElementById('inputIvan').setAttribute('disabled', 'disabled');
+    document.getElementById('inputSil').setAttribute('disabled', 'disabled');
 
     $http.get('http://api.football-data.org/v1/soccerseasons/424/fixtures',
         { headers:{'X-Auth-Token': '2d9073763e924684a4162cea8d3817f4'}},{

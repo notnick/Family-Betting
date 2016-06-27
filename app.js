@@ -21,7 +21,7 @@ app.config(['$routeProvider',function($routeProvider){
     });
 }]);
 
-app.controller('betController',['$http','$sce', '$scope','$log','$filter','$interval','$timeout',function($http, $sce, $scope, $log,$filter,$interval,$timeout){
+app.controller('betController',['$http','$sce', '$scope','$log','$filter','$interval',function($http, $sce, $scope, $log,$filter,$interval){
 
 var gl_games;
 var gl_teams;
@@ -47,307 +47,56 @@ var currentIndexPlaying;
 var Idscore;
 
 var staticResults;
-var nikId = 'nWjLnxmbKmVofKlfJwK5n5Rqpox1';
-var silId = '3mOUIGx5kiTjmTK4OZURto7WXU03';
-var ivanId = '31MLzMcsXjeNufVOmbaGgCWGsIi1';
-var nikIdIs = false;
-var ivanIdIs = false;
-var silIdIs = false;
 
-
-
-var config = {
-  apiKey: "AIzaSyB7wIBha8ulEQUAT7v9Kya_W7UT7ry25JI",
-  authDomain: "table-1-cc574.firebaseapp.com",
-  databaseURL: "https://table-1-cc574.firebaseio.com",
-  storageBucket: "table-1-cc574.appspot.com",
-};
-
-var app = firebase.initializeApp(config);
-var database = app.database();
-var auth = app.auth();
-var storage = app.storage();
-
-var databseRef = database.ref().child('data');
-
-var emailField;
-var passwordField;
-
-login.addEventListener('click',function(ev){
-  console.log("log-in pressed");
-
-  emailField = document.getElementById('email').value;
-  passwordField = document.getElementById('password').value;
-
-  if(emailField.length < 4){
-    alert('Грешен Имейл Адрес');
-    return;
-  }
-  if(passwordField.length < 4){
-    alert('Въведете парола');
-    return;
-  }
-
-        auth.signInWithEmailAndPassword(emailField,passwordField).then(function(result){
-          console.log("Auth ok: "+ result.providerId + " " + result.uid);
-          document.getElementById('email').value ="";
-          document.getElementById('password').value ="";
-
-          document.getElementById('password').style.visibility = "hidden";
-          document.getElementById('email').style.visibility = "hidden";
-          document.getElementById('login').style.visibility = "hidden";
-
-          if(result.uid === nikId){
-            document.getElementById('userId').textContent='Николай';
-            nikIdIs = true;
-
-            var inputField = document.getElementsByClassName('inputBet');
-            var inputXZ = document.getElementsByClassName('inputNik');
-
-            /*
-            for(var y = 0; y < inputXZ.length; y++){
-
-              document.getElementsByClassName('inputIvan')[y].setAttribute('readOnly','readOnly');
-              document.getElementsByClassName('inputSil')[y].setAttribute('readOnly','readOnly');
-            }
-            */
-            console.log("nik id: "+nikIdIs);
-          }
-          if(result.uid === ivanId){
-            document.getElementById('userId').textContent='Иван';
-            ivanIdIs = true;
-          }
-          if(result.uid === silId){
-            document.getElementById('userId').textContent='Силвия';
-            silIdIs = true;
-          }
-
-        },function(error){
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if(errorCode === 'auth/wrong-password'){
-            alert('Грешна парола.');
-          }if(errorCode === 'auth/user-not-found' ){
-            alert('Грешен потребител');
-          }else{
-            console.log(error);
-          }
-        });
-
-});
-
-signOut.addEventListener('click',function(){
-  auth.signOut();
-  console.log("Sing out!");
-  document.getElementById('userId').textContent='Потребител';
-  document.getElementById('password').style.visibility = "";
-  document.getElementById('email').style.visibility = "";
-  document.getElementById('login').style.visibility = "";
-  var nikIdIs = false;
-  var ivanIdIs = false;
-  var silIdIs = false;
-});
-
-var zalogtest = [];
-var arreyM = [];
-
-// READ THE DATA ONCE, DONT LISEN FOR CAHNGES !
-databseRef.once('value', function(snapshot) {
-    $timeout(function (){
-      $scope.bets123 = snapshot.val();
-      console.log("TRIGGERED");
-    });
-});
-
-/*
-databseRef.on('value', function (snapshot) {
-    $timeout(function () {
-      //update(snapshot);
-      $scope.bets123 = snapshot.val();
-      console.log("TRIGGERED");
-    });
-  });
-  */
-/*
-  function update (snapshot) {
-    $scope.bets123 = snapshot.val();
-    console.log("TRIGGERED");
-  }
-*/
-  databseRef.on('child_changed', function(data) {
-    console.log('changing child!');
-    //$scope.bets123 = data.val();
-  });
-
-  $scope.nickChangeInput = function(index,value){
-    if(nikIdIs === true && gl_games[index].status === 'TIMED'){
-      console.log(index + " "+ value);
-      var ind = 0;
-      ind = index;
-      var hopperRef = databseRef.child(ind);
-        hopperRef.update({
-          "nikolay": value
-        });
-    }
-    if(nikIdIs === false || gl_games[index].status != 'TIMED'){
-      console.log(gl_games[index].status);
-      alert('ГРЕШКА');
-    }
-
-
-  };
-  $scope.ivanChangeInput = function(index,value){
-    if(ivanIdIs === true && gl_games[index].status === 'TIMED'){
-      console.log(index + " "+ value);
-      var ind = 0;
-      ind = index;
-      var hopperRef = databseRef.child(ind);
-        hopperRef.update({
-          "ivan": value
-        });
-    }
-    if(ivanIdIs === false || gl_games[index].status != 'TIMED'){
-      console.log(gl_games[index].status);
-      alert('ГРЕШКА');
-    }
-
-  };
-  $scope.silChangeInput = function(index,value){
-    if(silIdIs === true && gl_games[index].status === 'TIMED'){
-      console.log(index + " "+ value);
-      var ind = 0;
-      ind = index;
-      var hopperRef = databseRef.child(ind);
-        hopperRef.update({
-          "silviq": value
-        });
-    }
-    if(silIdIs === false || gl_games[index].status != 'TIMED'){
-      console.log(gl_games[index].status);
-      alert('ГРЕШКА');
-    }
-
-  };
-
-  $scope.changedElement = function(index,value,value2,value3){
-    console.log('CHANGE!' + index + " "+value);
-    //databseRef.update({"index/ivan": "value"});
-    index = index + 36;
-    if(nikIdIs === true){
-
-/*
-      var inputXZ = document.getElementsByClassName('inputNik');
-  for(var y = 0; y < inputXZ.length; y++){
-    document.getElementsByClassName('inputNik')[y].removeAttribute('readOnly');
-    document.getElementsByClassName('inputIvan')[y].setAttribute('readOnly','readOnly');
-    document.getElementsByClassName('inputSil')[y].setAttribute('readOnly','readOnly');
-    console.log('REMOVIGN');
-    }
-    */
-      firebase.database().ref('data/' + index).set({
-            nikolay: value,
-            ivan: value2,
-            silviq: value3
-        });
-    }
-    if(ivanIdIs === true){
-      firebase.database().ref('data/' + index).set({
-            ivan: value,
-            nikolay: value2,
-            silviq: value3
-        });
-    }
-    if(silIdIs === true){
-      firebase.database().ref('data/' + index).set({
-            silviq: value,
-            nikolay: value2,
-            ivan: value3
-        });
-    }else{
-      console.log( 'Not Writing!' );
-
-    }
-
-  };
-
-/*
-function getDataFromFirebase(){
-    databseRef.on('child_added', function(snapshot){
-       for (var i = 0; i < snapshot.val().length; i++) {
-            arreyM[i].nikolay= snapshot.val()[i].nikolay;
-            arreyM[i].ivan= snapshot.val()[i].ivan;
-            arreyM[i].silviq=snapshot.val()[i].silviq;
-       }
-
-    });
-    return arreyM;
-}
-function test2(){
-  databseRef.once('value', function(data) {
-    console.log(data.val().ivan);
-    for (var key in data.val()) {
-        console.log(key, data.val()[key].ivan);
-        zalogtest[key].nikolay = data.val()[key].nikolay;
-        zalogtest[key].ivan = data.val()[key].ivan;
-        zalogtest[key].silviq = data.val()[key].silviq;
-      }
-
-  });
-}
-window.onload = function() {
-  test2();
-  console.log(zalogtest);
-};
-*/
 var zalog = [
-  {nikolay: '2 : 0', ivan: '0 : 1', silviq: '1 : 0'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 1', ivan: '2 : 1', silviq: '3 : 1'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 1', ivan: '2 : 2', silviq: '0 : 1'},
-  {nikolay: '0 : 0', ivan: '2 : 0', silviq: '1 : 1'},
-  {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 1', ivan: '1 : 0', silviq: '2 : 0'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '2 : 1', ivan: '2 : 2', silviq: '1 : 0'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '2 : 1', ivan: '3 : 0', silviq: '2 : 0'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
-  {nikolay: '2 : 0', ivan: '3 : 0', silviq: '1 : 1'},
-  {nikolay: '1 : 1', ivan: '3 : 1', silviq: '2 : 2'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 0', ivan: '2 : 0', silviq: '2 : 0'},
-  {nikolay: '1 : 1', ivan: '1 : 0', silviq: '0 : 1'},
-  {nikolay: '0 : 2', ivan: '0 : 2', silviq: '2 : 0'},
-  {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
-  {nikolay: '0 : 0', ivan: '2 : 1', silviq: '0 : 1'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 0', ivan: '2 : 1', silviq: '0 : 2'},
-  {nikolay: '2 : 2', ivan: '1 : 1', silviq: '2 : 1'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 1', ivan: '1 : 2', silviq: '1 : 0'},
-  {nikolay: '1 : 0', ivan: '1 : 1', silviq: '3 : 1'},
+                {nikolay: '2 : 0', ivan: '0 : 1', silviq: '1 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '2 : 1', silviq: '3 : 1'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '2 : 2', silviq: '0 : 1'},
+                {nikolay: '0 : 0', ivan: '2 : 0', silviq: '1 : 1'},
+                {nikolay: '1 : 0', ivan: '3 : 0', silviq: '2 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '1 : 0', silviq: '2 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '2 : 1', ivan: '2 : 2', silviq: '1 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '2 : 1', ivan: '3 : 0', silviq: '2 : 0'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
+                {nikolay: '2 : 0', ivan: '3 : 0', silviq: '1 : 1'},
+                {nikolay: '1 : 1', ivan: '3 : 1', silviq: '2 : 2'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 0', ivan: '2 : 0', silviq: '2 : 0'},
+                {nikolay: '1 : 1', ivan: '1 : 0', silviq: '0 : 1'},
+                {nikolay: '0 : 2', ivan: '0 : 2', silviq: '2 : 0'},
+                {nikolay: '1 : 1', ivan: '0 : 2', silviq: '0 : 1'},
+                {nikolay: '0 : 0', ivan: '2 : 1', silviq: '0 : 1'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 0', ivan: '2 : 1', silviq: '0 : 2'},
+                {nikolay: '2 : 2', ivan: '1 : 1', silviq: '2 : 1'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '1 : 2', silviq: '1 : 0'},
+                {nikolay: '1 : 0', ivan: '1 : 1', silviq: '3 : 1'},
 
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '1 : 1', ivan: '3 : 1', silviq: '2 : 0'},
-  {nikolay: '3 : 2', ivan: '2 : 1', silviq: '1 : 2'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '1 : 1', ivan: '3 : 1', silviq: '2 : 0'},
+                {nikolay: '3 : 2', ivan: '2 : 1', silviq: '1 : 2'},
 
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '2 : 1', ivan: '2 : 0', silviq: '1 : 0'},
-  {nikolay: '1 : 1', ivan: '1 : 2', silviq: '0 : 2'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'},
-  {nikolay: '-',     ivan: '-',     silviq: '-'}
-];
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '2 : 1', ivan: '2 : 0', silviq: '1 : 0'},
+                {nikolay: '1 : 1', ivan: '1 : 2', silviq: '0 : 2'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'},
+                {nikolay: '-',     ivan: '-',     silviq: '-'}
 
+            ];
 $scope.zalog = zalog;
 
 /*
@@ -461,17 +210,12 @@ $scope.getLastFiveGames = function(teamURI,clTeamName){
 
     $scope.getCorrectColor = function(index,betScore){
       gameResult = staticResults[index].result.goalsHomeTeam +" : "+ staticResults[index].result.goalsAwayTeam;
-
               if(staticResults[index].status === 'FINISHED' && gameResult.toString() === betScore.toString()){
                     return "won";
-              }
-              if(staticResults[index].status === 'FINISHED' && betScore.toString() === '-'){
+              }else if(staticResults[index].status === 'FINISHED' && betScore.toString() === '-'){
                     return "non";
-              }else if(staticResults[index].status === 'FINISHED' && gameResult.toString() != betScore.toString()){
+              }else{
                     return "lost";
-              }
-              else{
-                    return "non";
               }
     };
 

@@ -53,12 +53,45 @@
                 <th>Силвия</th>
             </tr>
         </thead>
-          <tr  ng-cloak ng-repeat="(key,value) in zalog.slice(36)"  >
+
+          <tr  ng-cloak ng-repeat="(key,value) in bets123.slice(36)"  >
               <td>{{$index+1}}</td>
-              <td>{{value.nikolay}}</td>
-              <td>{{value.ivan}}</td>
-              <td>{{value.silviq}}</td>
+              <td class="inputBet">
+                <div ng-if="getCorrectColor($index+36,value.nikolay) === 'won'" class="bet-won-color" >
+                  <input  class="inputNik" type="text"  name="nik" value="{{value.nikolay}}" ng-blur="nickChangeInput($index+36,value.nikolay)" ng-model="value.nikolay" >
+                </div>
+                <div ng-if="getCorrectColor($index+36,value.nikolay) === 'lost'" class="bet-lost-color" >
+                  <input  class="inputNik" type="text"  name="nik" value="{{value.nikolay}}" ng-blur="nickChangeInput($index+36,value.nikolay)" ng-model="value.nikolay" >
+                </div>
+                <div ng-if="getCorrectColor($index+36,value.nikolay) === 'non'" >
+                  <input  class="inputNik" type="text"  name="nik" value="{{value.nikolay}}" ng-blur="nickChangeInput($index+36,value.nikolay)" ng-model="value.nikolay" >
+                </div>
+              </td>
+              <td class="inputBet">
+                <div ng-if="getCorrectColor($index+36,value.ivan) === 'won'" class="bet-won-color" >
+                  <input  class="inputIvan" type="text"  name="123" value="{{value.ivan}}" ng-blur="ivanChangeInput($index+36,value.ivan)" ng-model="value.ivan" >
+                </div>
+                <div ng-if="getCorrectColor($index+36,value.ivan) === 'lost'" class="bet-lost-color" >
+                  <input  class="inputIvan" type="text"  name="123" value="{{value.ivan}}" ng-blur="ivanChangeInput($index+36,value.ivan)" ng-model="value.ivan" >
+                </div>
+                <div ng-if="getCorrectColor($index+36,value.ivan) === 'non'" >
+                  <input  class="inputIvan" type="text"  name="123" value="{{value.ivan}}" ng-blur="ivanChangeInput($index+36,value.ivan)" ng-model="value.ivan" >
+                </div>
+              </td>
+              <td class="inputBet">
+                <div ng-if="getCorrectColor($index+36,value.silviq) === 'won'" class="bet-won-color" >
+                  <input  class="inputSil" type="text"  name="sd" value="{{value.silviq}}" ng-blur="silChangeInput($index+36,value.silviq)" ng-model="value.silviq" >
+                </div>
+                <div ng-if="getCorrectColor($index+36,value.silviq) === 'lost'" class="bet-lost-color" >
+                  <input  class="inputSil" type="text"  name="sd" value="{{value.silviq}}" ng-blur="silChangeInput($index+36,value.silviq)" ng-model="value.silviq" >
+                </div>
+                <div ng-if="getCorrectColor($index+36,value.silviq) === 'non'" >
+                  <input  class="inputSil" type="text"  name="sd" value="{{value.silviq}}" ng-blur="silChangeInput($index+36,value.silviq)" ng-model="value.silviq" >
+                </div>
+              </td>
+
           </tr>
+
       </table>
     </div>
 </div>

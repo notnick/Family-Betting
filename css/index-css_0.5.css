@@ -18,6 +18,57 @@ a{
 a:hover{
   text-decoration: none;
 }
+.inputBet input{
+  border:0px;
+  background: inherit;
+  background-color: inherit;
+
+  display: inline;
+  width:100%;
+  height: 100%;
+  text-align: center;
+
+}
+.navbar-inverse {
+    background-color: #104c8d;
+    border-color: #05427d;
+}
+.btn-success {
+    color: #1f1d1d;
+    background-color: #FFEB3B;
+    border-color: #7d7824;
+}
+.btn-success:hover {
+    color: #3e3434;
+    background-color: #F9A825;
+    border-color: #F9A825;
+}
+.btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
+  color: #3e3434;
+  background-color: #F9A825;
+  border-color: #F9A825;
+}
+.btn-success:active:hover, .btn-success.active:hover, .open > .dropdown-toggle.btn-success:hover, .btn-success:active:focus, .btn-success.active:focus, .open > .dropdown-toggle.btn-success:focus, .btn-success:active.focus, .btn-success.active.focus, .open > .dropdown-toggle.btn-success.focus {
+  color: #3e3434;
+  background-color: #F9A825;
+  border-color: #F9A825;
+}
+.btn-success:active, .btn-success.active {
+  color: #3e3434;
+  background-color: #F9A825;
+  border-color: #F9A825;
+}
+.btn-success:focus, .btn-success.focus {
+  color: #3e3434;
+  background-color: #F9A825;
+  border-color: #F9A825;
+}
+.navbar{
+  margin-bottom:5px;
+}
+.navbar-brand{
+  font-size: 20px;
+}
 
 .empty-wrapper{
   min-height: 600px;
@@ -41,6 +92,9 @@ a:hover{
   background-color: black;
   color:red;
   font-size:1.1em;
+}
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
 }
 /* Nav - Tabs */
 
@@ -390,6 +444,13 @@ td{
   padding-left:5px;
 }
 
+@media (min-width: 768px){
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 20px;
+  }
+}
+
 @media (min-width: 1025px){
   .table-games td{
     height: 35px;
@@ -418,9 +479,11 @@ td{
 
 @media(max-width: 768px){
 
-  .nav > li > a {
+
+.nav > li > a {
     padding: 1px 2px;
 }
+
 
   .profile{
     margin:0px;

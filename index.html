@@ -73,6 +73,34 @@
         </div>
       </div>
 
+    <!-- NAV-BAR -->
+    <nav class="navbar navbar-inverse ">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand" id="userId"></span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="email" placeholder="Имейл" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" id="password" placeholder="Парола" class="form-control">
+            </div>
+            <button type="submit" name="login" id="login" class="btn btn-success">Вход</button>
+            <button type="submit" name="login" id="signOut" class="btn btn-success">Изход</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+
     <div class="container">
           <div class="col-md-12">
             <div class="profile-container" ng-cloak>
@@ -184,6 +212,8 @@
       </div>
     </footer>
 
+
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
