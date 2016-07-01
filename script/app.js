@@ -5,7 +5,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(['$routeProvider',function($routeProvider){
     $routeProvider
     .when('#/',{
-      templateUrl: 'round16.html',
+      templateUrl: 'round8.html',
     })
     .when('/round24',{
       templateUrl: 'round24.html',
@@ -16,8 +16,14 @@ app.config(['$routeProvider',function($routeProvider){
     .when('/round8',{
       templateUrl: 'round8.html',
     })
+    .when('/round4',{
+      templateUrl: 'round4.html',
+    })
+    .when('/round2',{
+      templateUrl: 'round2.html',
+    })
     .otherwise({
-      redirectTo : '/round16'
+      redirectTo : '/round8'
     });
 }]);
 
@@ -72,6 +78,25 @@ var databseRef = database.ref().child('data');
 
 var emailField;
 var passwordField;
+
+addRow.addEventListener('click',function(ev){
+    var currentKey = 0;
+
+    databseRef.once('value', function(data) {
+      for (var key in data.val()) {
+          currentKey += 1;
+        }
+        console.log("KEY: " + currentKey);
+    });
+
+    firebase.database().ref('data/' + currentKey).set({
+          ivan: "-",
+          nikolay: "-",
+          silviq: "-"
+      });
+
+});
+
 
 login.addEventListener('click',function(ev){
   console.log("log-in pressed");
@@ -178,6 +203,8 @@ databseRef.on('value', function (snapshot) {
     console.log('changing child!');
     //$scope.bets123 = data.val();
   });
+
+
 
   $scope.nickChangeInput = function(index,value){
     if(nikIdIs === true && gl_games[index].status === 'TIMED'){
@@ -449,7 +476,12 @@ $scope.getLastFiveGames = function(teamURI,clTeamName){
                 }
               }
             }
-      compareCorrect();
+    //  compareCorrect();
+    // Crashing on something
+      nickPoints = 5;
+      ivanPoints = 2;
+      silviqPoints = 1;
+
       $scope.nickPoints = nickPoints;
       $scope.ivanPoints = ivanPoints;
       $scope.silviqPoints = silviqPoints;
