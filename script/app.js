@@ -5,7 +5,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(['$routeProvider',function($routeProvider){
     $routeProvider
     .when('#/',{
-      templateUrl: 'round8.html',
+      templateUrl: 'round2.html',
     })
     .when('/round24',{
       templateUrl: 'round24.html',
@@ -23,7 +23,7 @@ app.config(['$routeProvider',function($routeProvider){
       templateUrl: 'round2.html',
     })
     .otherwise({
-      redirectTo : '/round8'
+      redirectTo : '/round2'
     });
 }]);
 
@@ -480,7 +480,7 @@ $scope.getLastFiveGames = function(teamURI,clTeamName){
     // Crashing on something
       nickPoints = 5;
       ivanPoints = 2;
-      silviqPoints = 1;
+      silviqPoints = 3;
 
       $scope.nickPoints = nickPoints;
       $scope.ivanPoints = ivanPoints;

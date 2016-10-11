@@ -10,7 +10,7 @@
             <th>Резултат</th>
         </tr>
     </thead>
-      <tr  ng-cloak ng-repeat="(key,value) in results.slice(44)" >
+      <tr  ng-cloak ng-repeat="(key,value) in results.slice(44,48)" >
           <td>{{$index+1}}</td>
           <td>{{value.date | date:'dd-MM'}}</td>
           <td>
@@ -54,7 +54,7 @@
             </tr>
         </thead>
 
-          <tr  ng-cloak ng-repeat="(key,value) in bets123.slice(44)"  >
+          <tr  ng-cloak ng-repeat="(key,value) in bets123.slice(44,48)"  >
               <td>{{$index+1}}</td>
               <td class="inputBet">
                 <div ng-if="getCorrectColor($index+44,value.nikolay) === 'won'" class="bet-won-color" >
